@@ -34,13 +34,13 @@ class CategoryController extends Controller
     {
         $category_exists = Category::where('id',$id)->first();
         if ($category_exists) {
-            return new CategoryResource(Category::findOrFail($id));
+            return new CategoryResource(Category::find($id));
         }
         return Response::json(['error' => 'Category not found']);
     }
 
     /**
-     * Insert categories
+     * Insert category
      *
      * @param  \Illuminate\Http\Request  $request
      * @return Response
@@ -64,7 +64,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update categories
+     * Update category
      *
      * @param  \Illuminate\Http\Request  $request
      * @return Response

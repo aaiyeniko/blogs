@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,10 @@ Route::get('/category/{id}', [CategoryController::class, 'getCategoryById']);
 Route::post('/category', [CategoryController::class, 'insertCategory']);
 Route::put('/category', [CategoryController::class, 'updateCategory']);
 Route::delete('/category', [CategoryController::class, 'deleteCategory']);
+
+Route::get('/blog', [BlogController::class, 'getBlogs']);
+Route::get('/blog/{id}', [BlogController::class, 'getBlogById']);
+Route::post('/blog', [BlogController::class, 'insertBlog']);
+Route::put('/blog', [BlogController::class, 'updateBlog']);
+Route::delete('/blog', [BlogController::class, 'deleteBlog']);
 
