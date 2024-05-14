@@ -1,11 +1,19 @@
-import './index.css';
-import './App.css';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Navbar from './Navbar';
+import Home from './Home';
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+  <Router>
+    <Navbar />
+    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </div>
+  </Router>
   );
 }
 
