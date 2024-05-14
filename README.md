@@ -1,22 +1,29 @@
 # Blog Application
+
 This is a minimal blog application that uses [React](https://github.com/facebook/create-react-app) client and [Laravel](https://laravel.com) API server
 
 ## Run the client server
+
 ### Prerequisite
+
 - [Node](https://nodejs.org/en) at least v20.11.1
 
 ### Steps
+
 - change directory to the client folder `cd client`
-- run `npm i` to install packages
+- run `npm i` to install packages.
 - run `npm start` to start the app.
 
 ## Run the api server
+
 ### Prerequisite
+
 - PHP: at least PHP 8.0
 - MySQL
 - [Composer](https://getcomposer.org/) dependency manager for PHP
 
 ### Steps
+
 - change directory to the api folder `cd api`
 - run `composer install` to install packages
 - copy `.env.example` to `.env`
@@ -24,7 +31,9 @@ This is a minimal blog application that uses [React](https://github.com/facebook
 - run the application `php artisan serve`
 
 ## Database Seeder
-- Run database seeder 
+
+- Run database seeder
+
 ```
 php artisan db:seed
 # Run single seed
