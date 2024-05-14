@@ -17,12 +17,14 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $category_name = fake()->words(1, true);
-        DB::table('categories')->insert([
-            'title' => $category_name,
-            'slug' => Str::slug($category_name),
-            'created_at' => Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon::now()->toDateTimeString()
-        ]);
+        for ($i=0; $i < 5; $i++) { 
+            $category_name = fake()->words(1, true);
+            DB::table('categories')->insert([
+                'title' => $category_name,
+                'slug' => Str::slug($category_name),
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString()
+            ]);
+        }
 }
 }

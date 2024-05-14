@@ -20,15 +20,15 @@ class BlogsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 5; $i++) {
             $title = fake()->sentence();
             DB::table('blogs')->insert([
                 'title'=> $title,
                 'slug' => Str::slug($title),
-                'body'=> fake()->paragraph(5, false),
-                'author_id'=> 1,
-                'category_id'=> 1,
-                'image'=> fake()->imageUrl(640, 480, null, true),
+                'body' => fake()->paragraph(5, false),
+                'author_id' => 1,
+                'category_id' => 1,
+                'image' => "https://ui-avatars.com/api/?name=". fake()->words(1, true) ."+". fake()->words(1, true) ."&background=random&size=200",
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString()
             ]);

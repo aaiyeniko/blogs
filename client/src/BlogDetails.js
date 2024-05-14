@@ -86,9 +86,9 @@ const BlogDetails = () => {
                                 <dd>
                                     <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
                                         <li className="flex items-center space-x-2">
-                                            {blog?.author_avatar && (
+                                            {blog?.image && (
                                                 <img
-                                                    src={blog.author_avatar}
+                                                    src={blog.image}
                                                     width={38}
                                                     height={38}
                                                     alt="avatar"

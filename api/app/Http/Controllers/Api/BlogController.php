@@ -78,7 +78,8 @@ class BlogController extends Controller
         $blog->author_id = 1;
         $blog->category_id = $request->category_id;
         $blog->body = $request->body;
-        $blog->image = isset($request->image) ? $request->image : fake()->imageUrl(640, 480, null, true);
+        $image_url = "https://ui-avatars.com/api/?name=". fake()->words(1, true) ."+". fake()->words(1, true) ."&background=random&size=200";
+        $blog->image = isset($request->image) ? $request->image : $image_url;
         $blog->save();
 
         return Response::json(['success' => 'Blog created successfully']);
