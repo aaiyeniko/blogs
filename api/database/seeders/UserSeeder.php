@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
@@ -22,7 +23,9 @@ class UserSeeder extends Seeder
             'email' => 'admin@blogs.com',
             'password' => Hash::make('Password123#'),
             'remember_token' => Str::random(10),
-            'api_token'=>Str::random(80)
+            'api_token'=>Str::random(80),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString()
         ]);
     }
 }

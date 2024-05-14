@@ -43,7 +43,7 @@ const useQuery = () => {
 };
 
 const Home = () => {
-    const {blogs} = useQuery()
+    const { blogs, isLoading, error } = useQuery()
     return ( 
         <>
             <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -56,9 +56,10 @@ const Home = () => {
                     </p>
                 </div>
                 <ul>
-                {!blogs.length && 'No posts found.'}
+                {isLoading && <div>Loading...</div>}
+                {error && <div>{error}.</div>}
                 {blogs.map((blog) => {
-                    const { id, category, created_at, title, image, body } = blog
+                    const { id, category, created_at, title, image, body, slug } = blog
                     return (
                         <li key={id} className="py-4">
                             <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
@@ -71,7 +72,7 @@ const Home = () => {
                                 <div className="space-y-3 xl:col-span-3">
                                     <div>
                                         <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                                            <Link to={``} className="text-gray-900">
+                                            <Link to={`/blog/${slug}`} className="text-gray-900">
                                                 {title} 
                                             </Link>
                                         </h3>
@@ -85,9 +86,9 @@ const Home = () => {
                                     </div>
                                     <div className="text-base font-medium leading-6">
                                         <Link
-                                            to={`/blog/`}
+                                            to={`/blog/${slug}`}
                                             className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                                            aria-label={`Read more: "#"`}>
+                                            aria-label={`Read more: "${title}"`}>
                                             Read more &rarr;
                                         </Link>
                                     </div>

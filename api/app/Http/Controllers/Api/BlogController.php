@@ -32,9 +32,24 @@ class BlogController extends Controller
      */
     public function getBlogById($id)
     {
-        $blog_exists = Blog::where('id',$id)->first();
-        if ($blog_exists) {
-            return new BlogResource(blog::find($id));
+        $blog = Blog::where('id',$id)->first();
+        if ($blog) {
+            return new BlogResource($blog);
+        }
+        return Response::json(['error' => 'Blog not found']);
+    }
+
+    /**
+     * Get blog by Slug
+     *
+     *@param  \Illuminate\Http\Request  $slug
+     * @return Response | Illuminate\Http\Resources\Json\JsonResource
+     */
+    public function getBlogBySlug($slug)
+    {
+        $blog = Blog::where('slug', $slug)->first();
+        if ($blog) {
+            return new BlogResource($blog);
         }
         return Response::json(['error' => 'Blog not found']);
     }
@@ -59,6 +74,7 @@ class BlogController extends Controller
 
         $blog = new Blog();
         $blog->title = $request->title;
+        $blog->slug = Str::slug($request->title);
         $blog->author_id = 1;
         $blog->category_id = $request->category_id;
         $blog->body = $request->body;
@@ -91,6 +107,7 @@ class BlogController extends Controller
         $blog = Blog::find($request->id);
         if ($blog) {
             $blog->title = $request->title;
+            $blog->slug = Str::slug($request->title);
             $blog->author_id = 1;
             $blog->category_id = $request->category_id;
             $blog->body = $request->body;
