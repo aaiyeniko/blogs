@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { formatDate } from 'pliny/utils/formatDate'
+// import { formatDate } from 'pliny/utils/formatDate';
 
 const useQuery = () => {      
 	const [blogs, setBlogs] = useState([]);
@@ -59,7 +59,7 @@ const Home = () => {
     const { blogs, isLoading, error, isDeleted, setIsDeleted } = useQuery()
     return ( 
         <>
-            <div className="divide-y divide-gray-200 dark:divide-gray-700">
+            <div data-testid="mainDiv" className="divide-y divide-gray-200 dark:divide-gray-700">
                 <div className="space-y-2 pb-8 pt-6 md:space-y-5">
                     <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
                         Hi, Welcome to David's Sport Blog
@@ -71,15 +71,17 @@ const Home = () => {
                 <ul className="flex justify-between flex-wrap">
                 {isLoading && <div>Loading...</div>}
                 {error && <div>{error}.</div>}
-                {blogs.map((blog) => {
+                {blogs.map((blog, index) => {
+                    // eslint-disable-next-line no-unused-vars
                     const { id, category, created_at, title, image, body, slug } = blog
+                    console.log(index, title)
                     return (
                         <li key={id} className="py-4 w-[45%]">
                             <article className="flex flex-col border border-b-2 p-1">
                                 <dl>
                                     <dt className="sr-only">Published on</dt>
                                     <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                                        <time dateTime={created_at}>{formatDate(created_at, 'en-GB')}</time>
+                                        {/* <time dateTime={created_at}>{formatDate(created_at, 'en-GB')}</time> */}
                                     </dd>
                                 </dl>
                                 <div className="space-y-3 xl:col-span-3 m-auto">
@@ -104,7 +106,7 @@ const Home = () => {
                                             aria-label={`Read more: "${title}"`}>
                                             Read more &rarr;
                                         </Link>
-                                        <button className="p-2 text-white bg-red-400 rounded-sm shadow-sm" onClick={()=>(handleDelete(id))}>Delete</button>
+                                        <button data-testid={`delBtn${index}`} className="p-2 text-white bg-red-400 rounded-sm shadow-sm" onClick={()=>(handleDelete(id))}>Delete</button>
                                     </div>
                                 </div>
                             </article>

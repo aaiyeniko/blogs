@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 const postDateTemplate = {
     weekday: 'long',
@@ -51,6 +52,44 @@ const useQuery = (slug) => {
 const BlogDetails = () => {
     const { slug } = useParams();
     const { blog, isLoading, error } = useQuery(slug)
+    const history = useHistory();
+
+    const [newBody, setNewBody] = useState('');
+
+    useEffect(() => {
+      setNewBody(blog.body)
+    }, [blog])
+
+    const handleNameInputChange = (e)=>{
+        setNewBody(e.target.value)
+        console.log(newBody)
+    }
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const updatedBlog = { 
+            "id": blog.id,
+        "slug": blog.slug,
+        "image": blog.image,
+        "title": blog.title,
+        "body": newBody,
+        "category": blog.category,
+        "category_id": blog.category_id,
+        "author": blog.author,
+        "created_at": blog.created_at,
+        "updated_at": blog.updated_at 
+        };
+
+
+        fetch(`http://localhost:8000/api/blog/${blog.id}`, {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(updatedBlog)
+        }).then(() => {
+            console.log("Blog edited successfully!");
+            history.push("/");
+        })
+    }
 
     return ( 
         <>
@@ -88,11 +127,11 @@ const BlogDetails = () => {
                                         <li className="flex items-center space-x-2">
                                             {blog?.image && (
                                                 <img
-                                                    src={blog.image}
-                                                    width={38}
-                                                    height={38}
-                                                    alt="avatar"
-                                                    className="h-10 w-10 rounded-full"
+                                                src={blog.image}
+                                                width={38}
+                                                height={38}
+                                                alt="avatar"
+                                                className="h-10 w-10 rounded-full"
                                                 />
                                             )}
                                             <dl className="whitespace-nowrap text-sm font-medium leading-5">
@@ -124,6 +163,10 @@ const BlogDetails = () => {
                                         </div>
                                     )}
                                 </div>
+                                <form className="min-h-64 border flex flex-col items-center p-4 justify-between" onSubmit={handleSubmit}>
+                                <textarea type="text" value={newBody} onChange={(e)=>handleNameInputChange(e)} className="border p-2 min-h-40 w-full" />
+                                <button type="submit" className="border p-1 bg-cyan-600 text-white">Edit Content</button>
+                                </form>
                                 <div className="pt-4 xl:pt-8">
                                     <Link
                                         to={`/`}
