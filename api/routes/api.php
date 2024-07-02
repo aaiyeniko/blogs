@@ -31,6 +31,5 @@ Route::get('/blog', [BlogController::class, 'getBlogs']);
 Route::get('/blog/slug/{slug}', [BlogController::class, 'getBlogBySlug']);
 Route::get('/blog/{id}', [BlogController::class, 'getBlogById']);
 Route::post('/blog', [BlogController::class, 'insertBlog']);
-Route::put('/blog', [BlogController::class, 'updateBlog']);
+Route::put('/blog/{id}', [BlogController::class, 'updateBlog']);
 Route::delete('/blog', [BlogController::class, 'deleteBlog']);
-
