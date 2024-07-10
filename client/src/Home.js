@@ -59,13 +59,13 @@ const Home = () => {
     const { blogs, isLoading, error, isDeleted, setIsDeleted } = useQuery()
     return ( 
         <>
-            <div data-testid="mainDiv" className="divide-y divide-gray-200 dark:divide-gray-700">
+            <div data-testid="mainDiv" className="divide-y divide-gray-200 dark:divide-gray-700 bg-cyan-100">
                 <div className="space-y-2 pb-8 pt-6 md:space-y-5">
                     <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
                         Hi, Welcome to David's Sport Blog
                     </h1>
                     <p className="text-lg leading-7 text-gray-500">
-                        Welcome to my blog - I am an Engineering student and I like talking and writing about sports. Have a good read (all opinions are mine)!
+                        Welcome to my blog - I am an Computer Engineering student and I like talking and writing about sports. Have a good read (all opinions are mine)!
                     </p>
                 </div>
                 <ul className="flex justify-between flex-wrap">
